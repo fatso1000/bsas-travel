@@ -29,7 +29,7 @@ const ProsOfBuenosAires = () => {
   ];
 
   return (
-    <div className="py-36 px-10">
+    <div className="py-36 px-10 mx-auto max-w-screen-lg">
       <h1 className="text-3xl font-bold text-center mb-8">
         Why Visit Buenos Aires?
       </h1>
@@ -56,7 +56,7 @@ function App() {
     <main className="bg-accent text-secondary min-h-[150vh]">
       <div className="w-full mx-auto grid grid-cols-1">
         <Navbar scrollYProgress={scrollYProgress} />
-        <section className="grid grid-cols-1 mx-auto h-[97svh] mt-[1.5vh] relative max-w-screen-lg max-lg:px-2">
+        <section className="grid grid-cols-1 mx-auto h-[97svh] mt-[1.5vh] relative max-lg:px-2">
           <video
             src={BSASVIDEO1}
             autoPlay
