@@ -35,20 +35,20 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <section className="embla">
-      <div className="embla__viewport rounded-xl relative" ref={emblaRef}>
+      <div className="embla__viewport rounded-2xl relative border border-brand/25 overflow-hidden" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
-            <div className="embla__slide" key={index}>
+          {slides.map((slide) => (
+            <div className="embla__slide" key={slide}>
               <img
                 alt=""
-                src={index}
-                className="embla__slide__number shadow-sm rounded-xl aspect-w-4 aspect-h-3 w-full h-full object-cover"
+                src={slide}
+                className="embla__slide__number rounded-2xl aspect-w-4 aspect-h-3 w-full h-full object-cover"
               />
             </div>
           ))}
         </div>
         <div className="embla__controls">
-          <div className="embla__buttons text-secondary">
+          <div className="embla__buttons">
             <PrevButton
               onClick={onPrevButtonClick}
               disabled={prevBtnDisabled}

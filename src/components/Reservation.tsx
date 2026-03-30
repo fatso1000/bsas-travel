@@ -1,105 +1,188 @@
 import { Icon } from "@iconify-icon/react";
 import EmblaCarousel from "./Carousel";
-import Picture1 from "../assets/pexels-micca-ar-308726700-23021526.jpg";
-import Picture2 from "../assets/pexels-micca-ar-308726700-23021657.jpg";
-import Picture3 from "../assets/pexels-rickson-derik-1225713006-22605358.jpg";
-import Picture4 from "../assets/pexels-sofia-linares-corsano-306415279-13447376.jpg";
+import CarouselImg1 from "../assets/pexels-micca-ar-308726700-23021526.jpg";
+import CarouselImg2 from "../assets/pexels-micca-ar-308726700-23021657.jpg";
+import CarouselImg3 from "../assets/pexels-rickson-derik-1225713006-22605358.jpg";
+import CarouselImg4 from "../assets/pexels-sofia-linares-corsano-306415279-13447376.jpg";
+
+const HOTEL = {
+  name: "NH Collection Buenos Aires Centro Histórico",
+  address: "Bolívar 120, C1066AAD, Cdad. Autónoma de Buenos Aires, Argentina",
+  mapQuery: "NH Collection Buenos Aires Centro Histórico, Bolívar 120, Buenos Aires, Argentina",
+  bookUrl:
+    "https://www.nh-collection.com/en/hotel/nh-collection-buenos-aires-centro-historico",
+  phone: "+54 11 4121-6446",
+} as const;
+
+const amenities = [
+  "Wi-Fi",
+  "AC",
+  "Breakfast",
+  "Security",
+  "LGBTQ+",
+  "Adaptive",
+] as const;
+
+const amenityStyles = [
+  "border-brand/50 text-brand",
+  "border-brand-sea/50 text-brand-sea",
+  "border-brand-coral/50 text-brand-coral",
+  "border-brand-bloom/50 text-brand-bloom",
+  "border-brand/50 text-brand",
+  "border-brand-sea/50 text-brand-sea",
+] as const;
+
+const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(HOTEL.mapQuery)}&hl=en&z=16&output=embed`;
 
 function Reservation() {
   return (
-    <section className="grid grid-cols-1 mx-auto py-7 max-lg:px-2 text-primary bg-secondary rounded-t-3xl w-full">
-      <div className="grid grid-cols-1 gap-3 max-w-screen-lg mx-auto">
-        <div className="grid xs:grid-cols-1 grid-cols-2 gap-3 px-6">
-          <div>
-            <h3 className="font-black text-4xl md:text-5xl lg:text-6xl">
-              RESERVATION
+    <section
+      id="reservation"
+      className="mx-auto w-full rounded-t-2xl border-x border-t border-brand/30 bg-white/55 py-8 text-ink backdrop-blur-lg sm:rounded-t-3xl sm:py-10 md:py-12 max-lg:px-3"
+    >
+      <div className="mx-auto grid w-full max-w-screen-lg grid-cols-1 gap-8 px-4 sm:gap-10 sm:px-6">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand sm:text-sm">
+              Featured hotel
+            </p>
+            <h3 className="mt-1 font-black text-2xl text-ink sm:text-3xl md:text-4xl lg:text-5xl lg:leading-tight">
+              {HOTEL.name}
             </h3>
-            <div className="inline-flex w-full gap-3 text-primary">
-              <Icon icon="gravity-ui:star-fill" />
-              <Icon icon="gravity-ui:star-fill" />
-              <Icon icon="gravity-ui:star-fill" />
-              <Icon icon="gravity-ui:star-fill" />
-              <Icon icon="gravity-ui:star-fill" />
+            <div
+              className="mt-2 inline-flex w-full gap-1 text-brand sm:gap-1.5"
+              aria-label="5 out of 5 stars"
+            >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Icon
+                  key={i}
+                  icon="gravity-ui:star-fill"
+                  className="text-base sm:text-lg"
+                  aria-hidden
+                />
+              ))}
             </div>
-            <h6 className="text-accent mb-2 text-sm">
-              Excelent hotel near all historic and interesting spots of the
-              city!
+            <h6 className="mt-3 text-xs leading-snug text-ink-muted sm:text-sm">
+              Five-star NH Collection property in the Microcentro — a short walk
+              from Plaza de Mayo, the Casa Rosada, and the Metropolitan
+              Cathedral.
             </h6>
-            <h4 className="text-sm inline-flex w-full items-center gap-2 leading-none">
-              <Icon icon="gravity-ui:map-pin" />
-              <strong>
-                Av. Rivadavia 1900-1854, C1033AAV Cdad. Autónoma de Buenos Aires
+            <h4 className="mt-3 inline-flex w-full items-start gap-2 text-xs leading-snug text-ink sm:text-sm">
+              <Icon
+                icon="gravity-ui:map-pin"
+                className="mt-0.5 shrink-0 text-brand-coral"
+                aria-hidden
+              />
+              <strong className="break-words font-semibold">
+                {HOTEL.address}
               </strong>
             </h4>
-            <div className="w-full inline-flex flex-wrap gap-x-2 lg:gap-x-3 gap-y-1 mt-4 text-secondary">
-              <div className="bg-accent max-h-12 min-w-16 flex-auto flex items-center justify-center text-center rounded-full px-3 py-2 text-xs">
-                Wi-Fi
-              </div>
-              <div className="bg-accent max-h-12 min-w-16 flex-auto flex items-center justify-center text-center rounded-full px-3 py-2 text-xs">
-                AC
-              </div>
-              <div className="bg-accent max-h-12 min-w-16 flex-auto flex items-center justify-center text-center rounded-full px-3 py-2 text-xs">
-                Breakfast
-              </div>
-              <div className="bg-accent max-h-12 min-w-16 flex-auto flex items-center justify-center text-center rounded-full px-3 py-2 text-xs">
-                Security
-              </div>
-              <div className="bg-accent max-h-12 min-w-16 flex-auto flex items-center justify-center text-center rounded-full px-3 py-2 text-xs">
-                LGBTQ+
-              </div>
-              <div className="bg-accent max-h-12 min-w-16 flex-auto flex items-center justify-center text-center rounded-full px-3 py-2 text-xs">
-                Adaptive
-              </div>
+            <p className="mt-2 text-xs text-ink-muted sm:text-sm">
+              <a
+                href={`tel:${HOTEL.phone.replace(/\s/g, "")}`}
+                className="font-medium text-brand underline-offset-2 hover:underline"
+              >
+                {HOTEL.phone}
+              </a>
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-5 sm:grid-cols-3 sm:gap-2.5 lg:flex lg:flex-wrap lg:gap-3">
+              {amenities.map((label, i) => (
+                <div
+                  key={label}
+                  className={`flex min-h-10 items-center justify-center rounded-full border-2 bg-white/50 px-2.5 py-2 text-center text-[0.65rem] font-semibold leading-tight backdrop-blur-sm sm:min-h-11 sm:px-3 sm:text-xs lg:min-w-16 lg:flex-1 ${amenityStyles[i]}`}
+                >
+                  {label}
+                </div>
+              ))}
             </div>
           </div>
-          <div className="grid grid-rows-2 grid-cols-1">
-            <div className="text-accent flex flex-col">
-              <h5 className="text-xl font-bold">Reviews</h5>
-              <div className="text-secondary my-auto grid grid-cols-1 grid-rows-1 gap-2">
-                <div className="p-2 bg-accent rounded-xl">
-                  <div className="w-full items-center inline-flex gap-2">
-                    <h3 className="text-sm font-bold">David Bundeldorf</h3>
-                    <div className="inline-flex items-center text-xs gap-1 text-primary">
-                      <Icon icon="gravity-ui:star-fill" />
-                      <Icon icon="gravity-ui:star-fill" />
-                      <Icon icon="gravity-ui:star-fill" />
-                      <Icon icon="gravity-ui:star-fill" />
-                      <Icon icon="gravity-ui:star-fill" />
+          <div className="flex min-h-0 flex-col gap-6 sm:gap-8 lg:justify-between">
+            <div className="flex min-h-0 flex-col text-ink">
+              <h5 className="text-lg font-bold sm:text-xl">Guest reviews</h5>
+              <div className="mt-2 grid grid-cols-1 gap-2">
+                <div className="glass-panel rounded-2xl border-brand/25 p-3 sm:p-4">
+                  <div className="inline-flex w-full flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-bold">Google traveler</h3>
+                    <div
+                      className="inline-flex items-center gap-0.5 text-xs text-brand"
+                      aria-label="5 out of 5 stars"
+                    >
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Icon key={i} icon="gravity-ui:star-fill" aria-hidden />
+                      ))}
                     </div>
                   </div>
-                  <p className="text-xs">
-                    Good breakfast, nice wifi speed connection and nice
-                    location.
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink-muted sm:text-sm">
+                    Excellent location for sightseeing, quiet rooms, and a
+                    solid breakfast before walking to the historic core.
+                  </p>
+                </div>
+                <div className="glass-panel rounded-2xl border-brand/25 p-3 sm:p-4">
+                  <div className="inline-flex w-full flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-bold">Booking.com guest</h3>
+                    <div
+                      className="inline-flex items-center gap-0.5 text-xs text-brand"
+                      aria-label="5 out of 5 stars"
+                    >
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Icon key={i} icon="gravity-ui:star-fill" aria-hidden />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink-muted sm:text-sm">
+                    Friendly front desk, spotless room, and we slept well after
+                    long days in the city — would stay again for the walkable
+                    Microcentro.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-full">
-              <h3 className="text-5xl font-black mt-auto">$599</h3>
-              <h6 className="text-accent text-xs">Precio por noche</h6>
+            <div className="flex w-full flex-col border-t border-brand/15 pt-4 sm:pt-0 lg:border-t-0 lg:pt-0">
+              <p className="text-xs font-medium text-ink-muted sm:text-sm">
+                Nightly rates change with season and availability — check the
+                official site for current prices.
+              </p>
+              <a
+                href={HOTEL.bookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex text-lg font-black text-brand underline-offset-2 hover:underline sm:text-xl"
+              >
+                View rates at NH Collection
+              </a>
             </div>
           </div>
         </div>
-        <div className="grid xs:grid-cols-1 grid-cols-2 grid-rows-1 px-6 gap-3">
-          <div>
-            <EmblaCarousel slides={[Picture1, Picture2, Picture3, Picture4]} />
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch md:gap-5">
+          <div className="min-w-0 [&_.embla]:[--slide-height:12.5rem] sm:[&_.embla]:[--slide-height:16rem] md:[&_.embla]:[--slide-height:19rem]">
+            <EmblaCarousel
+              slides={[CarouselImg1, CarouselImg2, CarouselImg3, CarouselImg4]}
+            />
           </div>
-          <div className="relative w-full h-0 pb-[75%] overflow-hidden iframe-wrapper">
+          <div className="iframe-wrapper relative aspect-[4/3] w-full min-h-[200px] overflow-hidden rounded-2xl border border-brand/30 bg-white/40 sm:min-h-[240px] md:min-h-0">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.4941706168725!2d-58.396803424138106!3d-34.59597885708973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccabdfc191295%3A0x8110084c679e64c0!2sEl%20Ateneo%20Grand%20Splendid!5e1!3m2!1sen!2sar!4v1728066037574!5m2!1sen!2sar"
+              title={`Map: ${HOTEL.name}`}
+              src={mapEmbedSrc}
               width="300"
               height="300"
-              className="rounded-xl shadow-sm"
+              className="rounded-2xl"
               style={{ border: 0 }}
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            />
           </div>
         </div>
-        <div className="flex w-full items-center justify-center mt-6">
-          <a className="text-center md:w-auto w-full rounded-full text-xl bg-primary px-6 py-2 text-secondary">
-            BOOK NOW
+
+        <div className="flex w-full flex-col items-stretch justify-center gap-3 px-0 sm:flex-row sm:items-center sm:px-0">
+          <a
+            href={HOTEL.bookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mx-auto w-full max-w-md rounded-full border-2 border-brand-sea bg-brand px-6 py-3.5 text-center text-base font-semibold text-white transition-colors hover:bg-brand-sea focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-bloom sm:w-auto sm:max-w-none sm:px-8 sm:py-3 sm:text-lg md:text-xl"
+          >
+            Book on NH Collection
           </a>
         </div>
       </div>

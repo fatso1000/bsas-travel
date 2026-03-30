@@ -7,7 +7,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
 
   return (
     <button
-      className="embla__button embla__button--prev shadow-sm bg-accent disabled:opacity-60 disabled:cursor-default"
+      className="embla__button embla__button--prev disabled:cursor-not-allowed"
       type="button"
       {...restProps}
     >
@@ -27,7 +27,7 @@ export const NextButton: React.FC<PropType> = (props) => {
 
   return (
     <button
-      className="embla__button embla__button--next shadow-sm bg-accent disabled:opacity-60 disabled:cursor-default"
+      className="embla__button embla__button--next disabled:cursor-not-allowed"
       type="button"
       {...restProps}
     >

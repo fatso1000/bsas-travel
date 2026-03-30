@@ -3,6 +3,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-brand/30 bg-white/60 backdrop-blur-md;
+  }
+
+  .glass-panel-strong {
+    @apply rounded-2xl border border-brand/35 bg-white/75 backdrop-blur-lg;
+  }
+
+  .hero-scrim {
+    background: linear-gradient(
+      to bottom,
+      rgb(229 244 249 / 0.0) 0%,
+      rgb(229 244 249 / 0.05) 55%,
+      rgb(229 244 249 / 0.25) 100%
+    );
+  }
+}
+
 html {
   font-family: "Lora", serif;
   font-optical-sizing: auto;
@@ -60,30 +79,94 @@ html {
   align-items: center;
 }
 .embla__button {
-  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-tap-highlight-color: rgb(8 145 178 / 0.25);
   -webkit-appearance: none;
   appearance: none;
   touch-action: manipulation;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   cursor: pointer;
   border: 0;
   padding: 0;
   margin: 0;
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.75rem;
+  height: 2.75rem;
   z-index: 1;
   border-radius: 50%;
-  color: var(--text-body);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #0c4a6e;
+  background-color: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 2px 10px rgb(0 0 0 / 0.22),
+    0 0 0 2px rgb(8 145 178 / 0.4);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+}
+.embla__button:hover:not(:disabled) {
+  background-color: rgb(255 255 255 / 1);
+  box-shadow:
+    0 3px 14px rgb(0 0 0 / 0.26),
+    0 0 0 2px rgb(8 145 178 / 0.55);
+}
+.embla__button:focus-visible {
+  outline: 2px solid #0891b2;
+  outline-offset: 3px;
 }
 .embla__button:disabled {
-  color: var(--detail-high-contrast);
+  cursor: not-allowed;
+  color: rgb(12 74 110 / 0.4);
+  background-color: rgb(255 255 255 / 0.6);
+  box-shadow:
+    0 1px 5px rgb(0 0 0 / 0.12),
+    0 0 0 2px rgb(12 74 110 / 0.15);
 }
 .embla__button__svg {
-  width: 35%;
-  height: 35%;
+  width: 44%;
+  height: 44%;
+}
+
+/* Pros carousel: responsive slide widths, no layout shift on cards */
+.embla-pros {
+  --slide-spacing: 1rem;
+  --slide-size: 88%;
+}
+@media (min-width: 640px) {
+  .embla-pros {
+    --slide-size: 48%;
+  }
+}
+@media (min-width: 1024px) {
+  .embla-pros {
+    --slide-size: 31.5%;
+  }
+}
+.embla-pros__viewport {
+  overflow: hidden;
+  padding: 0 0.5rem;
+}
+.embla-pros__container {
+  display: flex;
+  margin-left: calc(var(--slide-spacing) * -1);
+  touch-action: pan-y pinch-zoom;
+}
+.embla-pros__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+
+@keyframes pros-icon-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+.animate-pros-icon {
+  animation: pros-icon-soft 2.8s ease-in-out infinite;
 }

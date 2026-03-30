@@ -2,12 +2,29 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    colors: {
-      primary: "#4679c8",
-      secondary: "#cbc3b8",
-      accent: "#261f12",
+    extend: {
+      colors: {
+        surface: {
+          DEFAULT: "#e5f4f9",
+          elevated: "#f2fbfd",
+          subtle: "#d8eef6",
+        },
+        ink: {
+          DEFAULT: "#0c4a6e",
+          muted: "#155e75",
+          faint: "#5f7c8c",
+        },
+        brand: {
+          DEFAULT: "#0891b2",
+          sea: "#0e7490",
+          coral: "#ea580c",
+          bloom: "#c026d3",
+        },
+      },
+      borderRadius: {
+        "4xl": "2rem",
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
