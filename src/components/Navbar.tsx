@@ -73,9 +73,20 @@ export const Navbar = ({
     return `rgb(8 145 178 / ${a})`;
   });
 
+  /** Bright over the video; shifts to brand as the bar gains a light backdrop. */
+  const titleColor = useTransform(barReveal, [0, 1], ["#ffffff", "#22d3ee"]);
+  const titleShadow = useTransform(
+    barReveal,
+    [0, 1],
+    [
+      "0 2px 16px rgb(8 47 73 / 0.55), 0 1px 4px rgb(0 0 0 / 0.35)",
+      "none",
+    ]
+  );
+
   return (
     <motion.div
-      className="fixed left-1/2 top-0 z-50 flex w-svw max-w-none -translate-x-1/2 items-center justify-center border-b border-transparent p-4 text-ink max-lg:px-3"
+      className="fixed left-1/2 top-0 z-50 flex w-svw max-w-none -translate-x-1/2 items-center justify-center border-b border-transparent p-4 max-lg:px-3"
       style={{
         height,
         backdropFilter,
@@ -87,8 +98,8 @@ export const Navbar = ({
       <MotionLink
         to="/"
         onClick={handleTitleClick}
-        className="text-center font-black text-2xl text-ink decoration-brand decoration-2 underline-offset-4 transition-colors hover:text-brand max-lg:text-xl"
-        style={{ scale }}
+        className="text-center font-black text-2xl decoration-brand decoration-2 underline-offset-4 transition-opacity hover:opacity-90 max-lg:text-xl"
+        style={{ scale, color: titleColor, textShadow: titleShadow }}
       >
         <span className="leading-tight">
           <span className="block lg:hidden">BUENOS</span>
@@ -103,11 +114,11 @@ export const Navbar = ({
 /** Slim bar for `/place/:slug` — fixed height, always pinned to the top. */
 export function NavbarCompact() {
   return (
-    <header className="fixed left-1/2 top-0 z-50 w-svw max-w-none -translate-x-1/2 border-b border-brand/[0.08] bg-white/75 pt-[env(safe-area-inset-top,0px)] text-ink backdrop-blur-md">
+    <header className="fixed left-1/2 top-0 z-50 w-svw max-w-none -translate-x-1/2 border-b border-brand/[0.08] bg-white/75 pt-[env(safe-area-inset-top,0px)] backdrop-blur-md">
       <div className="flex h-14 w-full items-center justify-center px-3 max-lg:px-2">
         <Link
           to="/"
-          className="whitespace-nowrap text-center text-base font-black leading-tight text-ink decoration-brand decoration-2 underline-offset-2 transition-colors hover:text-brand sm:text-lg"
+          className="whitespace-nowrap text-center text-base font-black leading-tight text-cyan-400 decoration-brand decoration-2 underline-offset-2 transition-opacity hover:opacity-90 sm:text-lg"
         >
           BUENOS AIRES
         </Link>

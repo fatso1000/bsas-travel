@@ -13,7 +13,7 @@ import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 function HomePage() {
   return (
     <>
-      <section className="grid grid-cols-1 mx-auto h-[97svh] mt-[1.5vh] relative max-w-screen-lg max-lg:px-3">
+      <section className="grid grid-cols-1 mx-auto h-[97svh] mt-[1.5vh] relative max-w-screen-xl max-lg:px-3">
         <video
           src={BSASVIDEO1}
           autoPlay
