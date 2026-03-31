@@ -3,6 +3,21 @@ import Picture2 from "../assets/pexels-micca-ar-308726700-23021657.jpg";
 import Picture3 from "../assets/pexels-rickson-derik-1225713006-22605358.jpg";
 import Picture4 from "../assets/pexels-sofia-linares-corsano-306415279-13447376.jpg";
 
+/**
+ * Pexels CDN URL. Gallery IDs were chosen from themed searches on pexels.com:
+ * Puerto Madero — "Puerto Madero"; Japanese Garden — "Japanese garden" / Buenos Aires;
+ * Plaza de Mayo — "Plaza de Mayo Buenos Aires"; Ateneo — "bookstore theater interior";
+ * El Caminito — "La Boca Buenos Aires"; Recoleta — Buenos Aires / cemetery mood;
+ * Teatro Colón — "opera house interior" (incl. Teatro Colón–style shots).
+ */
+export function pexelsPhotoUrl(
+  id: number,
+  ext: "jpeg" | "png" = "jpeg",
+  width = 1200
+) {
+  return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.${ext}?auto=compress&cs=tinysrgb&w=${width}`;
+}
+
 export type Attraction = {
   slug: string;
   title: string;
@@ -15,6 +30,8 @@ export type Attraction = {
   tips: string;
   /** Google Maps search query for embed (place name + city). */
   mapQuery: string;
+  /** Three gallery images (Pexels), chosen to match each attraction’s theme. */
+  galleryImages: readonly [string, string, string];
 };
 
 export const attractions: Attraction[] = [
@@ -39,6 +56,11 @@ export const attractions: Attraction[] = [
       "Subte Line C to Retiro or a short taxi from Microcentro; many visitors walk in from San Telmo or Puerto Madero’s own avenues.",
     tips: "Golden hour along the water is hard to beat. Wear comfortable shoes if you plan to loop toward the ecological reserve.",
     mapQuery: "Puerto Madero, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(28235677),
+      pexelsPhotoUrl(11111505),
+      pexelsPhotoUrl(32784075),
+    ],
   },
   {
     slug: "jardin-japones",
@@ -61,6 +83,11 @@ export const attractions: Attraction[] = [
       "Subte Line D to Plaza Italia or buses along Avenida Sarmiento; the garden sits inside the larger park belt.",
     tips: "Check opening hours before you go; weekends can be busier. Respect quiet zones so everyone can enjoy the atmosphere.",
     mapQuery: "Jardín Japonés, Palermo, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(32104071),
+      pexelsPhotoUrl(30977507),
+      pexelsPhotoUrl(31111807),
+    ],
   },
   {
     slug: "casa-mayo",
@@ -83,6 +110,11 @@ export const attractions: Attraction[] = [
       "Subte Lines A, D, and E serve nearby stations (e.g. Plaza de Mayo, Catedral); many bus lines cross the surrounding avenues.",
     tips: "Visit on a weekday morning for lighter crowds around the monuments; large gatherings can temporarily reshape access—stay aware and flexible.",
     mapQuery: "Plaza de Mayo, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(16355446),
+      pexelsPhotoUrl(33126437),
+      pexelsPhotoUrl(34736096),
+    ],
   },
   {
     slug: "ateneo",
@@ -105,6 +137,11 @@ export const attractions: Attraction[] = [
       "Subte Line D to Callao or Pueyrredón, then a short walk along Santa Fe.",
     tips: "Tripods and flash can be restricted; phone photos are usually fine. Combine with Recoleta Cemetery or the nearby art museums for a full cultural afternoon.",
     mapQuery: "El Ateneo Grand Splendid, Avenida Santa Fe, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(8940632, "png"),
+      pexelsPhotoUrl(21954351),
+      pexelsPhotoUrl(17580584),
+    ],
   },
   {
     slug: "el-caminito",
@@ -126,6 +163,11 @@ export const attractions: Attraction[] = [
     gettingThere: "Buses are the best option; taxis are also readily available. It's often combined with a visit to La Bombonera stadium.",
     tips: "Visit during the day for the best atmosphere and safety. Be mindful of your belongings in crowded areas.",
     mapQuery: "El Caminito, La Boca, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(34761867),
+      pexelsPhotoUrl(33534660),
+      pexelsPhotoUrl(16150834),
+    ],
   },
   {
     slug: "recoleta-cemetery",
@@ -147,6 +189,11 @@ export const attractions: Attraction[] = [
     gettingThere: "Accessible by Subte Line D (Facultad de Derecho station) or numerous bus lines. It's a short walk from the Recoleta cultural center.",
     tips: "Wear comfortable shoes, as you'll be doing a lot of walking. Consider a guided tour to learn about the cemetery's famous residents and their stories.",
     mapQuery: "Recoleta Cemetery, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(17662710),
+      pexelsPhotoUrl(29045432),
+      pexelsPhotoUrl(35119662),
+    ],
   },
   {
     slug: "teatro-colon",
@@ -168,6 +215,11 @@ export const attractions: Attraction[] = [
     gettingThere: "Numerous bus lines and Subte lines (B, C, D to Diagonal Norte, Lavalle, or Tribunales stations) serve the area. It's easily walkable from many downtown hotels.",
     tips: "Book tickets for performances or tours in advance, especially during peak season. Dress code for evening performances is often formal.",
     mapQuery: "Teatro Colón, Buenos Aires, Argentina",
+    galleryImages: [
+      pexelsPhotoUrl(34995890),
+      pexelsPhotoUrl(36123945),
+      pexelsPhotoUrl(13132908),
+    ],
   },
 ];
 

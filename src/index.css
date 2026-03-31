@@ -3,6 +3,42 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    line-height: 1.65;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1,
+      "clig" 1;
+    font-variant-ligatures: common-ligatures contextual;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+}
+
 @layer components {
   .glass-panel {
     @apply rounded-2xl border border-brand/30 bg-white/60 backdrop-blur-md;
@@ -11,21 +47,6 @@
   .glass-panel-strong {
     @apply rounded-2xl border border-brand/35 bg-white/75 backdrop-blur-lg;
   }
-
-  .hero-scrim {
-    background: linear-gradient(
-      to bottom,
-      rgb(229 244 249 / 0.0) 0%,
-      rgb(229 244 249 / 0.05) 55%,
-      rgb(229 244 249 / 0.25) 100%
-    );
-  }
-}
-
-html {
-  font-family: "Lora", serif;
-  font-optical-sizing: auto;
-  scroll-behavior: smooth;
 }
 
 .iframe-wrapper iframe {

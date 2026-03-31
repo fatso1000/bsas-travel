@@ -83,7 +83,7 @@ function Attractions() {
 
       <dialog
         ref={dialogRef}
-        className="fixed left-1/2 top-1/2 z-[100] m-0 w-[min(100vw-1.5rem,28rem)] max-h-[min(85vh,36rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-brand/35 bg-surface-elevated p-0 text-ink shadow-2xl ring-1 ring-ink/10 backdrop:bg-ink/40 backdrop:backdrop-blur-sm open:flex open:flex-col"
+        className="fixed left-1/2 top-1/2 z-[100] m-0 w-[min(100vw-1rem,28rem)] max-sm:max-h-[92dvh] max-sm:min-h-[72dvh] sm:max-h-[min(85vh,36rem)] sm:min-h-0 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-brand/35 bg-surface-elevated p-0 text-ink shadow-2xl ring-1 ring-ink/10 backdrop:bg-ink/40 backdrop:backdrop-blur-sm open:flex open:flex-col"
         aria-labelledby="attractions-modal-title"
       >
         <div className="flex shrink-0 items-center justify-between gap-3 border-b border-brand/20 bg-white/60 px-5 py-4 backdrop-blur-md">

@@ -46,14 +46,14 @@ export const Navbar = ({
   });
 
   const scale = useTransform(scrollYProgress, (p) => {
-    const end = belowLg ? 0.16 : 0.35;
+    const end = belowLg ? 0.16 : 0.20;
     const t = Math.min(1, Math.max(0, p / end));
     return 2.5 + (1 - 2.5) * t;
   });
 
   const barReveal = useTransform(scrollYProgress, (p) => {
     const start = belowLg ? 0.08 : 0.2;
-    const end = belowLg ? 0.18 : 0.35;
+    const end = belowLg ? 0.18 : 0.20;
     const t = Math.min(1, Math.max(0, (p - start) / (end - start)));
     return t;
   });
@@ -73,8 +73,8 @@ export const Navbar = ({
     return `rgb(8 145 178 / ${a})`;
   });
 
-  /** Bright over the video; shifts to brand as the bar gains a light backdrop. */
-  const titleColor = useTransform(barReveal, [0, 1], ["#ffffff", "#22d3ee"]);
+  /** Bright over the video; ink when the bar is compact (matches NavbarCompact). */
+  const titleColor = useTransform(barReveal, [0, 1], ["#ffffff", "#0c4a6e"]);
   const titleShadow = useTransform(
     barReveal,
     [0, 1],
@@ -114,11 +114,11 @@ export const Navbar = ({
 /** Slim bar for `/place/:slug` — fixed height, always pinned to the top. */
 export function NavbarCompact() {
   return (
-    <header className="fixed left-1/2 top-0 z-50 w-svw max-w-none -translate-x-1/2 border-b border-brand/[0.08] bg-white/75 pt-[env(safe-area-inset-top,0px)] backdrop-blur-md">
+    <header className="fixed left-1/2 top-0 z-50 w-svw max-w-none -translate-x-1/2 border-b border-brand/[0.08] bg-white/75 pt-[env(safe-area-inset-top,0px)] text-ink backdrop-blur-md">
       <div className="flex h-14 w-full items-center justify-center px-3 max-lg:px-2">
         <Link
           to="/"
-          className="whitespace-nowrap text-center text-base font-black leading-tight text-cyan-400 decoration-brand decoration-2 underline-offset-2 transition-opacity hover:opacity-90 sm:text-lg"
+          className="whitespace-nowrap text-center text-base font-black leading-tight text-ink decoration-brand decoration-2 underline-offset-2 transition-colors hover:text-brand sm:text-lg"
         >
           BUENOS AIRES
         </Link>

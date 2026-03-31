@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Icon } from "@iconify-icon/react";
 import {
@@ -17,25 +17,38 @@ function pickTwoRandomPlaces(pool: Attraction[]): Attraction[] {
   return [pool[i], pool[j]];
 }
 
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div
-      role="img"
-      aria-label={label}
-      className="aspect-[4/3] w-full rounded-xl border border-brand/25 bg-gradient-to-br from-brand/15 via-surface-elevated to-brand-coral/10"
-    />
-  );
-}
-
 function PlaceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const place = getAttractionBySlug(slug);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const recommendedPlaces = useMemo(() => {
     if (!slug) return [];
     const pool = attractions.filter((a) => a.slug !== slug);
     return pickTwoRandomPlaces(pool);
   }, [slug]);
+
+  useEffect(() => {
+    setLightboxSrc(null);
+  }, [slug]);
+
+  useEffect(() => {
+    if (!lightboxSrc) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxSrc(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [lightboxSrc]);
+
+  useEffect(() => {
+    if (!lightboxSrc) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [lightboxSrc]);
 
   if (!place) {
     return <Navigate to="/" replace />;
@@ -148,16 +161,62 @@ function PlaceDetail() {
           className="mb-4 text-xl font-bold text-ink md:text-2xl"
         >
           Gallery
-        </h2>
-        <p className="mb-4 text-sm text-ink-muted">
-          More photos coming soon. Additional slots are shown as placeholders.
-        </p>
+        </h2> 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <ImagePlaceholder label="Placeholder image for gallery slot one" />
-          <ImagePlaceholder label="Placeholder image for gallery slot two" />
-          <ImagePlaceholder label="Placeholder image for gallery slot three" />
+          {place.galleryImages.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              onClick={() => setLightboxSrc(src)}
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-brand/25 text-left ring-brand/0 transition hover:border-brand/50 hover:ring-2 hover:ring-brand/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              <img
+                src={src}
+                alt={`${place.title} — gallery photo ${i + 1}`}
+                className="h-full w-full object-cover transition group-hover:scale-[1.02]"
+                loading="lazy"
+                decoding="async"
+              />
+              <span
+                className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-xl bg-ink/0 transition-colors group-hover:bg-ink/40 group-focus-visible:bg-ink/40"
+                aria-hidden
+              >
+                <Icon
+                  icon="gravity-ui:magnifier-plus"
+                  className="text-4xl text-white opacity-0 drop-shadow-md transition group-hover:opacity-100 group-focus-visible:opacity-100 sm:text-5xl"
+                  aria-hidden
+                />
+              </span>
+              <span className="sr-only">View larger</span>
+            </button>
+          ))}
         </div>
       </section>
+
+      {lightboxSrc ? (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/65 p-4 pt-[max(1rem,env(safe-area-inset-top))] backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Gallery image"
+          onClick={() => setLightboxSrc(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxSrc(null)}
+            className="absolute right-3 top-[max(0.75rem,env(safe-area-inset-top))] z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/90 text-ink shadow-lg transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            aria-label="Close image"
+          >
+            <Icon icon="gravity-ui:xmark" className="text-xl" aria-hidden />
+          </button>
+          <img
+            src={lightboxSrc}
+            alt={`${place.title} — enlarged gallery photo`}
+            className="max-h-[min(90dvh,920px)] max-w-[min(96vw,1280px)] rounded-lg object-contain shadow-2xl ring-1 ring-white/20"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      ) : null}
 
       <section
         className="mt-12 border-t border-brand/20 pt-10"

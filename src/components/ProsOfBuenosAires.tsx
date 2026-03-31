@@ -54,7 +54,7 @@ const pros: ProCard[] = [
     title: "Food & Wine",
     description:
       "From classic parrillas and empanadas to inventive bodegones and natural wine bars, porteño dining is a reason to stay an extra night—or three.",
-    image: Picture1,
+    image: "https://images.pexels.com/photos/34490464/pexels-photo-34490464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     imageAlt: "Outdoor dining and city atmosphere in Buenos Aires",
   },
   {
@@ -62,7 +62,7 @@ const pros: ProCard[] = [
     title: "Green Spaces",
     description:
       "Huge parks, rose gardens, and the riverside reserve offer room to breathe between neighborhoods—ideal for jogging, picnics, or a quiet read under the trees.",
-    image: Picture2,
+    image: "https://images.pexels.com/photos/35895238/pexels-photo-35895238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     imageAlt: "Lush park paths and greenery in Buenos Aires",
   },
   {
@@ -70,7 +70,7 @@ const pros: ProCard[] = [
     title: "Waterfront & Skyline",
     description:
       "Modern towers meet historic brick warehouses along the docks. Sunsets over the water and long promenades make the eastern edge of the city feel wide open.",
-    image: Picture3,
+    image: "https://images.pexels.com/photos/32895774/pexels-photo-32895774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     imageAlt: "Waterfront and urban skyline",
   },
   {
@@ -119,7 +119,7 @@ function ProsOfBuenosAires() {
     usePrevNextButtons(emblaApi);
 
   return (
-    <div className="py-24 px-6 md:px-10">
+    <div id="pros" className="scroll-mt-24 py-24 px-6 md:px-10">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-3 text-ink">
         Why Visit Buenos Aires?
       </h1>
