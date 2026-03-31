@@ -3,9 +3,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaCarouselType } from "embla-carousel";
 import { Icon } from "@iconify-icon/react";
 import { usePrevNextButtons } from "../hooks/usePrevNextButtons";
-import Picture1 from "../assets/pexels-micca-ar-308726700-23021526.jpg";
-import Picture2 from "../assets/pexels-micca-ar-308726700-23021657.jpg";
-import Picture3 from "../assets/pexels-rickson-derik-1225713006-22605358.jpg";
 import Picture4 from "../assets/pexels-sofia-linares-corsano-306415279-13447376.jpg";
 
 const brandIconClasses = ["text-brand", "text-brand-coral", "text-brand-sea"] as const;
